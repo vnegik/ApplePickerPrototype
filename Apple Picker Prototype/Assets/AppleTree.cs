@@ -19,6 +19,14 @@ public class AppleTree : MonoBehaviour
     void Start()
     {
         // Сбрасывать яблоки раз в секунду
+        Invoke("DropApple", 2f);
+    }
+
+    void DropApple()
+    {
+        GameObject apple = Instantiate<GameObject>(applePrefab);
+        apple.transform.position = transform.position;
+        Invoke("DropApple", secondsBetweenAppleDrops);
     }
 
     void Update()
@@ -37,7 +45,6 @@ public class AppleTree : MonoBehaviour
             speed = -Mathf.Abs(speed);
             // Начать движение влево
         }
-       
     }
 
     void FixedUpdate()
